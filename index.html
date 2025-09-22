@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Gerador de Prescrição — Adulto</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Roboto (versátil) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="page-header" role="banner">
+    <h1>Gerador de Prescrição por Sintoma (Adulto)</h1>
+    <p class="muted">Selecione sintomas, ajuste posologia e gere a prescrição.</p>
+  </header>
+
+  <main id="conteudo" class="grid" role="main">
+    <!-- Coluna 1 -->
+    <section class="box" aria-labelledby="tit-sintomas">
+      <h2 id="tit-sintomas">Sintomas</h2>
+      <div id="sintomas-list" class="pills" role="group" aria-label="Lista de sintomas"></div>
+
+      <div class="row small mt-2">
+        <div>
+          <label for="separador">Separador do cabeçalho</label>
+          <input type="text" id="separador" value="—————————————" />
+        </div>
+        <div>
+          <label for="inicioIndex">Contagem inicia em</label>
+          <input type="number" id="inicioIndex" value="1" min="1" />
+        </div>
+      </div>
+
+      <div class="row small mt-2">
+        <button class="btn" id="carregarMedicacoes">Carregar medicações</button>
+        <button class="btn btn-ghost" id="limpar">Limpar</button>
+      </div>
+    </section>
+
+    <!-- Coluna 2 -->
+    <section class="box" aria-labelledby="tit-meds">
+      <h2 id="tit-meds">Medicações sugeridas</h2>
+      <div class="row small">
+        <div>
+          <label for="filtroMed">Buscar medicação por nome</label>
+          <input id="filtroMed" type="text" placeholder="ex.: paracetamol, ibuprofeno..." />
+        </div>
+      </div>
+      <div id="medicacoes-container" class="meds"></div>
+    </section>
+  </main>
+
+  <section class="box mt-3" aria-labelledby="tit-presc">
+    <h2 id="tit-presc">Prescrição</h2>
+    <textarea id="saida" aria-label="Texto de prescrição em formato livre"></textarea>
+    <div class="row small mt-2">
+      <button class="btn" id="gerarPrescricao">Gerar Prescrição</button>
+      <button class="btn btn-outline" id="copiarPrescricao">Copiar</button>
+      <button class="btn btn-outline" id="imprimir">Imprimir (2 vias A4)</button>
+    </div>
+    <fieldset class="mt-2">
+      <legend>Modelos opcionais</legend>
+      <label><input type="checkbox" id="tplHidratacao"> Incluir orientação de hidratação</label><br />
+      <label><input type="checkbox" id="tplSinaisAlarme"> Incluir sinais de alarme</label>
+    </fieldset>
+  </section>
+
+  <!-- Folha especial só para impressão -->
+  <div id="print-sheet" style="display:none" aria-hidden="true"></div>
+
+  <!-- Área de mensagens (leitores de tela) -->
+  <div id="live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+
+  <footer class="page-footer" role="contentinfo">
+    Uso exclusivo por profissional habilitado. Ajustes podem ser necessários conforme avaliação clínica.
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

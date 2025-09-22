@@ -1,1 +1,0 @@
-# receita_adulto
